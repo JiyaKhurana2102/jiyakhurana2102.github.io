@@ -127,8 +127,11 @@ def handler(request):
                 "parts": [{"text": SYSTEM_PROMPT}]
             },
             "contents": [
-                {"role": "user": [{"text": f"User question: {user_message}"}]}
-            ],
+                {
+                   "role": "user",
+                   "parts": [{"text": user_message}]
+                 }
+            ]
             "generationConfig": {
                 "temperature": 0.7,
                 "maxOutputTokens": 300,
