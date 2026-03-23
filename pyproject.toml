@@ -1,0 +1,6 @@
+[project]
+name = "portfolio-chatbot"
+version = "0.1.0"
+description = "Chatbot API for portfolio"
+requires-python = ">=3.9"
+dependencies = []
