@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POST TITLE HERE — Jiya Khurana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080a0e; --surface: #0e1117; --surface2: #141820;
+      --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+      --ink: #e8eaf0; --muted2: #8890a0; --accent: #a78bfa; --accent2: #f472b6;
+      --mono: "Space Mono", monospace; --sans: "Space Grotesk", system-ui, sans-serif;
+      --serif: "Lora", Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 400; font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(80px); animation: drift 12s ease-in-out infinite alternate; }
+    .orb-1 { width:420px; height:420px; top:-100px; right:-80px; background:rgba(167,139,250,0.07); animation-duration:14s; }
+    .orb-2 { width:280px; height:280px; bottom:15%; left:-60px; background:rgba(244,114,182,0.05); animation-duration:10s; animation-delay:-4s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,40px) scale(1.1); } }
+    nav, main, footer { position: relative; z-index: 1; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 5vw; background: rgba(8,10,14,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); text-decoration: none; }
+    .nav-logo span { color: var(--muted2); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted2); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--accent); }
+    .container { max-width: 680px; margin: 0 auto; padding: 0 5vw; }
+    .post-header { padding: 9rem 0 3.5rem; border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards; }
+    @keyframes fadeUp { to { opacity:1; transform:none; } }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.72rem; color: var(--muted2); text-decoration: none; letter-spacing: 0.06em; margin-bottom: 2.5rem; transition: color 0.2s; }
+    .back-link:hover { color: var(--accent); }
+    .post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .post-tag { font-family: var(--mono); font-size: 0.62rem; padding: 0.12rem 0.5rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .tag-devlog  { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.25); color: var(--accent); }
+    .tag-opinion { background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.25); color: var(--accent2); }
+    .tag-personal{ background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); color: #6ee7b7; }
+    h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 400; line-height: 1.25; color: var(--ink); margin-bottom: 1.25rem; }
+    .post-meta-row { display: flex; align-items: center; gap: 1.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--muted2); letter-spacing: 0.04em; }
+    .post-body { padding: 3.5rem 0 5rem; opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards; }
+    .post-body p { font-size: 1rem; color: #b8bcc8; line-height: 1.85; margin-bottom: 1.75rem; }
+    .post-body h2 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--ink); margin: 3rem 0 1rem; }
+    .post-body h3 { font-family: var(--sans); font-size: 0.78rem; font-weight: 600; color: var(--accent); margin: 2rem 0 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .post-body ul { margin: 0 0 1.75rem 1.5rem; }
+    .post-body li { color: #b8bcc8; font-size: 1rem; line-height: 1.85; margin-bottom: 0.4rem; }
+    .post-body strong { color: var(--ink); font-weight: 600; }
+    blockquote { border-left: 2px solid var(--accent); margin: 2rem 0; padding: 1rem 1.5rem; background: rgba(167,139,250,0.05); border-radius: 0 4px 4px 0; }
+    blockquote p { margin: 0; font-style: italic; color: var(--muted2); }
+    .divider { margin: 3rem 0; text-align: center; font-family: var(--mono); color: var(--muted2); letter-spacing: 0.3em; font-size: 0.75rem; }
+    .post-nav { border-top: 1px solid var(--border); padding: 2.5rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .post-nav a { font-family: var(--mono); font-size: 0.75rem; color: var(--muted2); text-decoration: none; transition: color 0.2s; letter-spacing: 0.04em; }
+    .post-nav a:hover { color: var(--accent); }
+    footer { text-align: center; padding: 1.75rem 5vw; font-family: var(--mono); font-size: 0.7rem; color: var(--muted2); letter-spacing: 0.06em; border-top: 1px solid var(--border); }
+    @media (max-width: 440px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo"><span>~/</span>jiya</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="post-header">
+      <div class="container">
+        <a href="../blog.html" class="back-link">&#8592; Back to blog</a>
+        <div class="post-tags">
+          <!-- PICK YOUR TAGS — delete the ones you don't need -->
+          <span class="post-tag tag-devlog">Devlog</span>
+          <span class="post-tag tag-opinion">Opinion</span>
+          <span class="post-tag tag-personal">Personal</span>
+        </div>
+        <h1>YOUR POST TITLE HERE</h1>
+        <div class="post-meta-row">
+          <span>Month DD, YYYY</span>
+          <span>X min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-body">
+      <div class="container">
+
+        <p>Your opening paragraph goes here. Hook the reader in the first sentence.</p>
+
+        <h2>A section heading</h2>
+
+        <p>More content here.</p>
+
+        <blockquote>
+          <p>A quote or key takeaway you want to highlight.</p>
+        </blockquote>
+
+        <div class="divider">&#183; &#183; &#183;</div>
+
+        <h2>Another section</h2>
+
+        <h3>A sub-section label</h3>
+
+        <p>More content.</p>
+
+        <ul>
+          <li><strong>Point one</strong> — explanation here.</li>
+          <li><strong>Point two</strong> — explanation here.</li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="post-nav">
+        <!-- Update these links when you have more posts -->
+        <a href="#">&#8592; Previous post</a>
+        <a href="../blog.html">All posts &#8599;</a>
+        <a href="#">Next post &#8594;</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>&#169; 2026 &middot; jiya khurana &middot; built with care</footer>
+
+</body>
+</html>

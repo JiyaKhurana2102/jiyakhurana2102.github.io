@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From India to UTD: My First Semester in CS — Jiya Khurana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080a0e; --surface: #0e1117; --surface2: #141820;
+      --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+      --ink: #e8eaf0; --muted2: #8890a0; --accent: #a78bfa; --accent2: #f472b6;
+      --mono: "Space Mono", monospace; --sans: "Space Grotesk", system-ui, sans-serif;
+      --serif: "Lora", Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-weight: 400; font-size: 15px;
+      line-height: 1.7; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none; z-index: 0;
+    }
+    .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(80px); animation: drift 12s ease-in-out infinite alternate; }
+    .orb-1 { width:420px; height:420px; top:-100px; right:-80px; background:rgba(167,139,250,0.07); animation-duration:14s; }
+    .orb-2 { width:280px; height:280px; bottom:15%; left:-60px; background:rgba(244,114,182,0.05); animation-duration:10s; animation-delay:-4s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,40px) scale(1.1); } }
+    nav, main, footer { position: relative; z-index: 1; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 5vw; background: rgba(8,10,14,0.85);
+      backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); text-decoration: none; }
+    .nav-logo span { color: var(--muted2); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted2); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--accent); }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 0 5vw; }
+
+    /* ARTICLE HEADER */
+    .post-header {
+      padding: 9rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+      opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+    @keyframes fadeUp { to { opacity:1; transform:none; } }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--muted2);
+      text-decoration: none; letter-spacing: 0.06em; margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .post-tag {
+      font-family: var(--mono); font-size: 0.62rem; padding: 0.12rem 0.5rem;
+      border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .tag-devlog  { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.25); color: var(--accent); }
+    .tag-personal{ background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); color: #6ee7b7; }
+    h1 {
+      font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400; line-height: 1.25; letter-spacing: -0.01em;
+      color: var(--ink); margin-bottom: 1.25rem;
+    }
+    .post-meta-row {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--muted2); letter-spacing: 0.04em;
+    }
+    .post-meta-row span { display: flex; align-items: center; gap: 0.4rem; }
+
+    /* ARTICLE BODY */
+    .post-body {
+      padding: 3.5rem 0 5rem;
+      opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+    .post-body p {
+      font-size: 1rem; color: #b8bcc8; line-height: 1.85;
+      margin-bottom: 1.75rem;
+    }
+    .post-body h2 {
+      font-family: var(--serif); font-size: 1.35rem; font-weight: 400;
+      color: var(--ink); margin: 3rem 0 1rem; letter-spacing: -0.01em;
+    }
+    .post-body h3 {
+      font-family: var(--sans); font-size: 0.95rem; font-weight: 600;
+      color: var(--ink); margin: 2rem 0 0.75rem; letter-spacing: 0.02em;
+      text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; color: var(--accent);
+    }
+    .post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .post-body a:hover { color: var(--accent2); }
+    .post-body ul { margin: 0 0 1.75rem 1.5rem; }
+    .post-body li { color: #b8bcc8; font-size: 1rem; line-height: 1.85; margin-bottom: 0.4rem; }
+    .post-body strong { color: var(--ink); font-weight: 600; }
+    blockquote {
+      border-left: 2px solid var(--accent);
+      margin: 2rem 0; padding: 1rem 1.5rem;
+      background: rgba(167,139,250,0.05);
+      border-radius: 0 4px 4px 0;
+    }
+    blockquote p { margin: 0; font-style: italic; color: var(--muted2); }
+    .divider {
+      margin: 3rem 0; text-align: center;
+      font-family: var(--mono); color: var(--muted2); letter-spacing: 0.3em;
+      font-size: 0.75rem;
+    }
+
+    /* NAV BETWEEN POSTS */
+    .post-nav {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem;
+    }
+    .post-nav a {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--muted2);
+      text-decoration: none; transition: color 0.2s; letter-spacing: 0.04em;
+    }
+    .post-nav a:hover { color: var(--accent); }
+
+    footer {
+      text-align: center; padding: 1.75rem 5vw;
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--muted2); letter-spacing: 0.06em;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 440px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo"><span>~/</span>jiya</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="post-header">
+      <div class="container">
+        <a href="../blog.html" class="back-link">&#8592; Back to blog</a>
+        <div class="post-tags">
+          <span class="post-tag tag-personal">Personal</span>
+          <span class="post-tag tag-devlog">Devlog</span>
+        </div>
+        <h1>From India to UTD: My First Semester in CS</h1>
+        <div class="post-meta-row">
+          <span>March 22, 2026</span>
+          <span>5 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-body">
+      <div class="container">
+
+        <p>I moved to the United States from India during high school. That alone is a lot — new country, new school, new everything. But coming into college, I had one clear goal: study Computer Science and actually build things. This is a write-up of what my first semester at UTD looked like, honest and unfiltered.</p>
+
+        <h2>I didn't know what I was doing. That was fine.</h2>
+
+        <p>When I started, my coding experience was mostly Python basics from a library certification and some HTML/CSS I'd picked up on my own. I knew enough to be dangerous, not enough to feel confident. What I didn't expect was how quickly things would move once I was surrounded by people building actual projects.</p>
+
+        <p>The thing about UTD's CS program is that the coursework teaches you foundations, but the real learning happens in the clubs, the hackathons, and the late nights debugging something that should have taken twenty minutes but somehow took four hours.</p>
+
+        <div class="divider">&#183; &#183; &#183;</div>
+
+        <h2>Three projects, one semester</h2>
+
+        <h3>Pulse — my first real app</h3>
+        <p>Pulse started as a KTP pledge project — a campus guide app built with React Native, Expo, and Firebase. It was the first time I had worked on a full-stack mobile app with a real team. I built out UI screens, helped set up Firebase for real-time data, and worked on a chatbot system for campus Q&amp;A. It wasn't perfect, but it worked, and we demoed it. That felt enormous.</p>
+
+        <h3>Orbit — my first hackathon</h3>
+        <p>Orbit was built at a hackathon and honestly it's one of the things I'm most proud of. It's an AI-powered campus discovery platform that turns events into "planets" in a galaxy. We used React, Framer Motion, and OpenAI's API. I went in not really knowing what a hackathon was like, and came out with a deployed app and a much thicker skin for working fast under pressure.</p>
+
+        <h3>Memoir — still going</h3>
+        <p>Memoir is my current project through ACM. It's a memory preservation app — scan handwritten cards, organize them, create new digital ones. The design is beautiful (vintage stamps, parchment textures) and the tech stack is genuinely interesting: React Native, Supabase, Google Vision OCR, and OpenAI for tagging. We're still actively building it.</p>
+
+        <div class="divider">&#183; &#183; &#183;</div>
+
+        <h2>What I actually learned</h2>
+
+        <p>Not just technical stuff — though I did go from barely knowing JavaScript to building mobile apps with TypeScript and Firebase in one semester. The bigger lessons were softer:</p>
+
+        <ul>
+          <li><strong>Shipping matters more than perfection.</strong> Every project I've worked on has rough edges. Ship it anyway.</li>
+          <li><strong>Ask for help earlier.</strong> I spent too many hours stuck on things that a 10-minute conversation would have solved.</li>
+          <li><strong>Your background is an asset.</strong> Moving countries, navigating new systems, figuring things out without a roadmap — that's genuinely useful in tech.</li>
+          <li><strong>D&amp;D teaches you more about teamwork than most people expect.</strong> I'm not even joking.</li>
+        </ul>
+
+        <blockquote>
+          <p>The best thing I did this semester was say yes to things before I felt ready for them.</p>
+        </blockquote>
+
+        <h2>What's next</h2>
+
+        <p>I'm interested in data analytics and cloud computing — the intersection of building things and understanding the data those things generate. I want to keep shipping projects, keep writing, and eventually connect with people who've been in this field long enough to have real opinions about it.</p>
+
+        <p>If you're reading this and that's you — I'd genuinely love to talk. My email is on the main page.</p>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="post-nav">
+        <span style="color:var(--muted2); font-family:var(--mono); font-size:0.72rem;">First post</span>
+        <a href="../blog.html">All posts &#8599;</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>&#169; 2026 &middot; jiya khurana &middot; built with care</footer>
+
+</body>
+</html>
