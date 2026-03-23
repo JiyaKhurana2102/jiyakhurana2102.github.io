@@ -1,8 +1,5 @@
 {
-  "routes": [
-    {
-      "src": "/api/chat",
-      "dest": "/api/chat.py"
-    }
+  "rewrites": [
+    { "source": "/api/chat", "destination": "/api/index.py" }
   ]
 }
