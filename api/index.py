@@ -124,19 +124,19 @@ def handler(request):
 
         payload = {
             "system_instruction": {
-                "parts": [{"text": SYSTEM_PROMPT}]
-            },
-            "contents": [
-                {
-                   "role": "user",
-                   "parts": [{"text": user_message}]
-                 }
-            ]
-            "generationConfig": {
-                "temperature": 0.7,
-                "maxOutputTokens": 300,
+            "parts": [{"text": SYSTEM_PROMPT}]
+        },
+        "contents": [
+            {
+            "role": "user",
+            "parts": [{"text": user_message}]
             }
+        ],
+        "generationConfig": {
+        "temperature": 0.3,
+        "maxOutputTokens": 300,
         }
+    }
 
         req = urllib.request.Request(
             url,
